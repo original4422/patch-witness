@@ -73,15 +73,18 @@ def run_side(root, test_file, test_id, source_roots, timeout):
         command = [sys.executable, "-I", "-S", "-B", str(worker), str(root), test_file, test_id, str(result_file), *source_roots]
         with log_path.open("wb") as log:
             proc = subprocess.Popen(command, cwd=root, stdout=log, stderr=log, start_new_session=True)
+            timed_out = False
             try:
                 proc.wait(timeout=timeout)
             except subprocess.TimeoutExpired:
-                kill_group(proc)
-                proc.wait()
-                return {"status": "timeout"}
+                timed_out = True
             finally:
+                # Signal the group once, before reaping a timed-out worker.
                 # Descendants may outlive a successful worker as well.
                 kill_group(proc)
+                proc.wait()
+            if timed_out:
+                return {"status": "timeout"}
         if proc.returncode:
             return {"status": "worker_exit", "exit_code": proc.returncode}
         if not result_file.exists():
