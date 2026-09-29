@@ -205,6 +205,27 @@ class WitnessTests(unittest.TestCase):
         ''')
         self.assertEqual(self.states(result), ("worker_exit", "worker_exit", False))
 
+    def test_subtest_system_exit(self):
+        result = self.run_case('''
+            import unittest
+            class Tests(unittest.TestCase):
+                def test_value(self):
+                    with self.subTest(): raise SystemExit(0)
+        ''')
+        self.assertEqual(self.states(result), ("worker_exit", "worker_exit", False))
+
+    def test_subtest_keyboard_interrupt(self):
+        result = self.run_case('''
+            import unittest
+            class Tests(unittest.TestCase):
+                def test_value(self):
+                    with self.subTest(): raise KeyboardInterrupt()
+        ''')
+        self.assertEqual(self.states(result), ("worker_exit", "worker_exit", False))
+        for side in ("base", "head"):
+            event = result["tests"][0][side]["record"]["events"][0]
+            self.assertEqual(event["exception"], "KeyboardInterrupt")
+
     def test_timeout_cleans_descendant(self):
         marker = Path(self.tmp.name) / "late-write"
         child = f"import time; from pathlib import Path; time.sleep(1); Path({str(marker)!r}).touch()"

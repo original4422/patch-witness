@@ -56,4 +56,4 @@ python3 -m patch_witness \
 python3 -m unittest discover -s tests -v
 ```
 
-27 项测试覆盖真实 Git 快照、脏工作区、导入来源、关键反例及超时子进程清理。[相关工具及定位](README.md#related-tools)。MIT。
+29 项测试覆盖真实 Git 快照、脏工作区、导入来源、关键反例及超时子进程清理。[相关工具及定位](README.md#related-tools)。MIT。

@@ -55,7 +55,10 @@ def record(root, test_file, test_id, source_roots):
         def addSubTest(self, test, subtest, err):
             super().addSubTest(test, subtest, err)
             if err:
-                status = "assertion_failure" if phase == "test" and issubclass(err[0], AssertionError) else phase + "_error"
+                if issubclass(err[0], (SystemExit, KeyboardInterrupt)):
+                    status = "worker_exit"
+                else:
+                    status = "assertion_failure" if phase == "test" and issubclass(err[0], AssertionError) else phase + "_error"
                 self.event(status, err)
 
     def instrument(suite):
