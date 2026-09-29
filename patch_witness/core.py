@@ -98,6 +98,9 @@ def run_side(root, test_file, test_id, source_roots, timeout):
 
 
 def compare(repo, base, head, test_file, test_ids, source_roots=(), timeout=30):
+    # Python 3.10 defers unittest callbacks until after teardown.
+    if sys.version_info < (3, 11):
+        raise ValueError("Python 3.11+ is required for phase-specific unittest events")
     if os.name != "posix":
         raise ValueError("this version requires POSIX process groups")
     if timeout <= 0:

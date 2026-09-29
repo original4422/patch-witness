@@ -8,7 +8,7 @@
 
 ## 使用
 
-需要 Python 3.10+、Git、Linux/macOS。直接在克隆目录运行：
+需要 Python 3.11+、Git、Linux/macOS。直接在克隆目录运行：
 
 ```sh
 git clone https://github.com/original4422/patch-witness.git
@@ -56,4 +56,4 @@ python3 -m patch_witness \
 python3 -m unittest discover -s tests -v
 ```
 
-26 项测试覆盖真实 Git 快照、脏工作区、导入来源、关键反例及超时子进程清理。[相关工具及定位](README.md#related-tools)。MIT。
+27 项测试覆盖真实 Git 快照、脏工作区、导入来源、关键反例及超时子进程清理。[相关工具及定位](README.md#related-tools)。MIT。

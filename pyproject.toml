@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "patch-witness"
 version = "0.1.0"
 description = "Same head unittest, two Git snapshots, per-test assertion-failure-to-pass evidence."
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license = {text = "MIT"}
 
 [project.scripts]

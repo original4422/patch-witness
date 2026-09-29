@@ -250,6 +250,11 @@ class WitnessTests(unittest.TestCase):
         self.assertEqual(classify({**data, "events": []}, "T.test"), "missing_result")
         self.assertEqual(classify({**data, "events": [{"status": "assertion_failure", "phase": "setup"}]}, "T.test"), "invalid_result")
 
+    def test_old_interpreter_is_rejected_before_execution(self):
+        with patch("patch_witness.core.sys.version_info", (3, 10)):
+            with self.assertRaisesRegex(ValueError, "Python 3.11"):
+                compare(self.repo, self.base, self.base, "missing.py", ["T.test"])
+
     def test_cli_exit_codes(self):
         self.write("test_subject.py", "import unittest\nclass Tests(unittest.TestCase):\n    def test_value(self): pass")
         head = self.commit()

@@ -13,7 +13,7 @@ head test ─── base source ─── assertion_failure
 
 ## Run
 
-Python 3.10+, Git, Linux or macOS. Clone and run without installing anything:
+Python 3.11+, Git, Linux or macOS. Clone and run without installing anything:
 
 ```sh
 git clone https://github.com/original4422/patch-witness.git
@@ -69,7 +69,7 @@ Both target repositories retained identical HEAD, index bytes, and tracked/unign
 python3 -m unittest discover -s tests -v
 ```
 
-26 tests exercise real temporary Git repositories, dirty staged/unstaged worktrees, snapshot imports, F2P/P2P, fixture errors, skips, missing dependencies, zero collection, process exits, timeout descendant cleanup, and parent result checks.
+27 tests exercise real temporary Git repositories, dirty staged/unstaged worktrees, snapshot imports, F2P/P2P, fixture errors, skips, missing dependencies, zero collection, process exits, timeout descendant cleanup, and parent result checks.
 
 ## Related tools
 
