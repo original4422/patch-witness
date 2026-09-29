@@ -1,0 +1,34 @@
+[
+  {
+    "repository": "repo-workbench",
+    "unchanged": true,
+    "before": {
+      "head": "36608419cfcf2e5f3a12d726deeaf3598d9c9445",
+      "index_sha256": "e010512891a6c9d584958d06fd4e38dbabf6bc46ac1a07d340b539d8c2311a5d",
+      "tracked_and_unignored_files": 11,
+      "worktree_sha256": "5b0bb684fd525f90d2fc5efe56011eaa5eb5d8e6ee4bad2dbc5e80c66120a502"
+    },
+    "after": {
+      "head": "36608419cfcf2e5f3a12d726deeaf3598d9c9445",
+      "index_sha256": "e010512891a6c9d584958d06fd4e38dbabf6bc46ac1a07d340b539d8c2311a5d",
+      "tracked_and_unignored_files": 11,
+      "worktree_sha256": "5b0bb684fd525f90d2fc5efe56011eaa5eb5d8e6ee4bad2dbc5e80c66120a502"
+    }
+  },
+  {
+    "repository": "learn-codex",
+    "unchanged": true,
+    "before": {
+      "head": "b6d93b8d627af1190f29f00a3ff11d21ccde6a90",
+      "index_sha256": "1d0918a1cf93fe506be22b0ef4e50aa59f89c8f41fca197b8ae52cfbed97135f",
+      "tracked_and_unignored_files": 89,
+      "worktree_sha256": "29a8308fce77b613a391ca17511872d5483b7b2833635bf4c2b7dedbcd62147f"
+    },
+    "after": {
+      "head": "b6d93b8d627af1190f29f00a3ff11d21ccde6a90",
+      "index_sha256": "1d0918a1cf93fe506be22b0ef4e50aa59f89c8f41fca197b8ae52cfbed97135f",
+      "tracked_and_unignored_files": 89,
+      "worktree_sha256": "29a8308fce77b613a391ca17511872d5483b7b2833635bf4c2b7dedbcd62147f"
+    }
+  }
+]

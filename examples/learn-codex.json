@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "base": "34a571d2db7992b4db7df8b5928840c804fcfea6",
+  "head": "93277559e7c80e47ccea0efdff4b85f1d7fe6e8c",
+  "test_file": "tests/test_exercise.py",
+  "test_sha256": "d889546eab631ee79fe51af36e822b36739c2a82e7ae236bdad63c088c1ad121",
+  "python": {
+    "implementation": "cpython",
+    "version": "3.14.7"
+  },
+  "source_roots": [],
+  "timeout_seconds": 30,
+  "tests": [
+    {
+      "test_id": "ExerciseTests.test_acceptance_rejects_missing_tag_validation",
+      "base": {
+        "status": "assertion_failure",
+        "record": {
+          "protocol": 1,
+          "test_id": "ExerciseTests.test_acceptance_rejects_missing_tag_validation",
+          "collected": 1,
+          "tests_run": 1,
+          "events": [
+            {
+              "status": "assertion_failure",
+              "phase": "test",
+              "exception": "AssertionError",
+              "message": "0 != 1 : test_01_basic_roundtrip (__main__.Acceptance.test_01_basic_roundtrip) ... ok\ntest_02_tags_normalize_deduplicate_and_match_exactly (__main__.Acceptance.test_02_tags_normalize_deduplicate_and_match_exactly) ... ok\ntest_03_legacy_data_uses_empty_tags_and_next_max_id (__main__.Acceptance.test_03_legacy_data_uses_empty_tags_and_next_max_id) ... ok\ntest_04_failed_operations_preserve_store (__main__.Acceptance.test_04_failed_operations_preserve_store) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.436s\n\nOK\n"
+            }
+          ],
+          "completed": true,
+          "imports": [
+            {
+              "module": "helpers",
+              "path": "tests/helpers.py"
+            },
+            {
+              "module": "witness_test",
+              "path": "tests/test_exercise.py"
+            }
+          ]
+        }
+      },
+      "head": {
+        "status": "pass",
+        "record": {
+          "protocol": 1,
+          "test_id": "ExerciseTests.test_acceptance_rejects_missing_tag_validation",
+          "collected": 1,
+          "tests_run": 1,
+          "events": [
+            {
+              "status": "pass",
+              "phase": "teardown"
+            }
+          ],
+          "completed": true,
+          "imports": [
+            {
+              "module": "helpers",
+              "path": "tests/helpers.py"
+            },
+            {
+              "module": "witness_test",
+              "path": "tests/test_exercise.py"
+            }
+          ]
+        }
+      },
+      "witness": true
+    },
+    {
+      "test_id": "ExerciseTests.test_reference_passes_blackbox_acceptance",
+      "base": {
+        "status": "pass",
+        "record": {
+          "protocol": 1,
+          "test_id": "ExerciseTests.test_reference_passes_blackbox_acceptance",
+          "collected": 1,
+          "tests_run": 1,
+          "events": [
+            {
+              "status": "pass",
+              "phase": "teardown"
+            }
+          ],
+          "completed": true,
+          "imports": [
+            {
+              "module": "helpers",
+              "path": "tests/helpers.py"
+            },
+            {
+              "module": "witness_test",
+              "path": "tests/test_exercise.py"
+            }
+          ]
+        }
+      },
+      "head": {
+        "status": "pass",
+        "record": {
+          "protocol": 1,
+          "test_id": "ExerciseTests.test_reference_passes_blackbox_acceptance",
+          "collected": 1,
+          "tests_run": 1,
+          "events": [
+            {
+              "status": "pass",
+              "phase": "teardown"
+            }
+          ],
+          "completed": true,
+          "imports": [
+            {
+              "module": "helpers",
+              "path": "tests/helpers.py"
+            },
+            {
+              "module": "witness_test",
+              "path": "tests/test_exercise.py"
+            }
+          ]
+        }
+      },
+      "witness": false
+    }
+  ],
+  "all_witnesses": false
+}

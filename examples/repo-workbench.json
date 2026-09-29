@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "base": "734dc2ba940d862cd7e79694807fc2e4bb5cf7a5",
+  "head": "36608419cfcf2e5f3a12d726deeaf3598d9c9445",
+  "test_file": "tests/test_workbench.py",
+  "test_sha256": "50094eadb617e0cd1a9109dc41345f61f000a6a4ef7bd0e65dc5c1cdc10e62ab",
+  "python": {
+    "implementation": "cpython",
+    "version": "3.14.7"
+  },
+  "source_roots": [],
+  "timeout_seconds": 30,
+  "tests": [
+    {
+      "test_id": "GitHubTests.test_paginated_gh_contract_requests_exact_sha",
+      "base": {
+        "status": "assertion_failure",
+        "record": {
+          "protocol": 1,
+          "test_id": "GitHubTests.test_paginated_gh_contract_requests_exact_sha",
+          "collected": 1,
+          "tests_run": 1,
+          "events": [
+            {
+              "status": "assertion_failure",
+              "phase": "test",
+              "exception": "AssertionError",
+              "message": "'filter=all' not found in 'repos/example/project/commits/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/check-runs?per_page=100'"
+            }
+          ],
+          "completed": true,
+          "imports": [
+            {
+              "module": "repo_workbench",
+              "path": "repo_workbench/__init__.py"
+            },
+            {
+              "module": "repo_workbench.cli",
+              "path": "repo_workbench/cli.py"
+            },
+            {
+              "module": "repo_workbench.core",
+              "path": "repo_workbench/core.py"
+            },
+            {
+              "module": "witness_test",
+              "path": "tests/test_workbench.py"
+            }
+          ]
+        }
+      },
+      "head": {
+        "status": "pass",
+        "record": {
+          "protocol": 1,
+          "test_id": "GitHubTests.test_paginated_gh_contract_requests_exact_sha",
+          "collected": 1,
+          "tests_run": 1,
+          "events": [
+            {
+              "status": "pass",
+              "phase": "teardown"
+            }
+          ],
+          "completed": true,
+          "imports": [
+            {
+              "module": "repo_workbench",
+              "path": "repo_workbench/__init__.py"
+            },
+            {
+              "module": "repo_workbench.cli",
+              "path": "repo_workbench/cli.py"
+            },
+            {
+              "module": "repo_workbench.core",
+              "path": "repo_workbench/core.py"
+            },
+            {
+              "module": "witness_test",
+              "path": "tests/test_workbench.py"
+            }
+          ]
+        }
+      },
+      "witness": true
+    },
+    {
+      "test_id": "GitHubTests.test_slug_does_not_leak_token",
+      "base": {
+        "status": "pass",
+        "record": {
+          "protocol": 1,
+          "test_id": "GitHubTests.test_slug_does_not_leak_token",
+          "collected": 1,
+          "tests_run": 1,
+          "events": [
+            {
+              "status": "pass",
+              "phase": "teardown"
+            }
+          ],
+          "completed": true,
+          "imports": [
+            {
+              "module": "repo_workbench",
+              "path": "repo_workbench/__init__.py"
+            },
+            {
+              "module": "repo_workbench.cli",
+              "path": "repo_workbench/cli.py"
+            },
+            {
+              "module": "repo_workbench.core",
+              "path": "repo_workbench/core.py"
+            },
+            {
+              "module": "witness_test",
+              "path": "tests/test_workbench.py"
+            }
+          ]
+        }
+      },
+      "head": {
+        "status": "pass",
+        "record": {
+          "protocol": 1,
+          "test_id": "GitHubTests.test_slug_does_not_leak_token",
+          "collected": 1,
+          "tests_run": 1,
+          "events": [
+            {
+              "status": "pass",
+              "phase": "teardown"
+            }
+          ],
+          "completed": true,
+          "imports": [
+            {
+              "module": "repo_workbench",
+              "path": "repo_workbench/__init__.py"
+            },
+            {
+              "module": "repo_workbench.cli",
+              "path": "repo_workbench/cli.py"
+            },
+            {
+              "module": "repo_workbench.core",
+              "path": "repo_workbench/core.py"
+            },
+            {
+              "module": "witness_test",
+              "path": "tests/test_workbench.py"
+            }
+          ]
+        }
+      },
+      "witness": false
+    }
+  ],
+  "all_witnesses": false
+}
