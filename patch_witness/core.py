@@ -65,12 +65,14 @@ def kill_group(proc):
         pass
 
 
-def run_side(root, test_file, test_id, source_roots, timeout):
+def run_side(root, test_file, test_id, source_roots, timeout, environment=None):
     worker = Path(__file__).with_name("worker.py").resolve()
     with tempfile.TemporaryDirectory(prefix="witness-result-") as directory:
         result_file = Path(directory) / "result.json"
         log_path = Path(directory) / "output.log"
-        command = [sys.executable, "-I", "-S", "-B", str(worker), str(root), test_file, test_id, str(result_file), *source_roots]
+        options = {"source_roots": source_roots, "environment": environment}
+        command = [(environment or {}).get("python", sys.executable), "-I", "-S", "-B", str(worker),
+                   str(root), test_file, test_id, str(result_file), json.dumps(options)]
         with log_path.open("wb") as log:
             proc = subprocess.Popen(command, cwd=root, stdout=log, stderr=log, start_new_session=True)
             timed_out = False
@@ -97,7 +99,8 @@ def run_side(root, test_file, test_id, source_roots, timeout):
         return {"status": status, "record": data}
 
 
-def compare(repo, base, head, test_file, test_ids, source_roots=(), timeout=30):
+def compare(repo, base, head, test_file, test_ids, source_roots=(), timeout=30, *,
+            python=None, dependency_dirs=(), packages=()):
     # Python 3.10 defers unittest callbacks until after teardown.
     if sys.version_info < (3, 11):
         raise ValueError("Python 3.11+ is required for phase-specific unittest events")
@@ -105,6 +108,20 @@ def compare(repo, base, head, test_file, test_ids, source_roots=(), timeout=30):
         raise ValueError("this version requires POSIX process groups")
     if timeout <= 0:
         raise ValueError("timeout must be positive")
+    environment = None
+    if python or dependency_dirs or packages:
+        if not (python and dependency_dirs and packages):
+            raise ValueError("--python, --dependency-dir and --package must be supplied together")
+        if any(not name.isidentifier() for name in packages):
+            raise ValueError("--package must name a top-level regular Python package")
+        interpreter = Path(python).absolute()
+        directories = [Path(p).resolve() for p in dependency_dirs]
+        if not interpreter.is_file() or not os.access(interpreter, os.X_OK):
+            raise ValueError("--python must be an executable file")
+        if any(not p.is_dir() for p in directories):
+            raise ValueError("--dependency-dir must be an existing directory")
+        environment = {"python": str(interpreter), "dependency_dirs": [str(p) for p in directories],
+                       "packages": list(dict.fromkeys(packages))}
     repo = Path(repo).resolve()
     test_file = relative_path(test_file)
     source_roots = [relative_path(p) for p in source_roots]
@@ -114,6 +131,9 @@ def compare(repo, base, head, test_file, test_ids, source_roots=(), timeout=30):
               "test_file": test_file, "test_sha256": hashlib.sha256(test_bytes).hexdigest(),
               "python": {"implementation": sys.implementation.name, "version": sys.version.split()[0]},
               "source_roots": source_roots, "timeout_seconds": timeout, "tests": []}
+    if environment:
+        report["environment_mode"] = "explicit-directories"
+        report["packages"] = environment["packages"]
     for test_id in test_ids:
         row = {"test_id": test_id}
         for side, sha in (("base", base_sha), ("head", head_sha)):
@@ -123,10 +143,20 @@ def compare(repo, base, head, test_file, test_ids, source_roots=(), timeout=30):
                 target = root / test_file
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_bytes(test_bytes)
-                row[side] = run_side(root, test_file, test_id, source_roots, timeout)
+                row[side] = run_side(root, test_file, test_id, source_roots, timeout, environment)
+                if environment:
+                    for path in [environment["python"], *environment["dependency_dirs"]]:
+                        row[side] = json.loads(json.dumps(row[side]).replace(path, "<explicit-environment>"))
                 # Keep public reports relocatable, including unittest exception messages.
                 row[side] = json.loads(json.dumps(row[side]).replace(str(root), "<snapshot>").replace(str(repo), "<repository>"))
         row["witness"] = row["base"]["status"] == "assertion_failure" and row["head"]["status"] == "pass"
+        if environment:
+            identities = [row[side].get("record", {}).get("environment") for side in ("base", "head")]
+            row["environment_match"] = identities[0] == identities[1] if all(identities) else None
+            row["comparison_status"] = ("comparable" if row["environment_match"] else
+                                        "environment_mismatch" if row["environment_match"] is False else
+                                        "environment_unavailable")
+            row["witness"] = row["witness"] and row["environment_match"] is True
         report["tests"].append(row)
     report["all_witnesses"] = bool(report["tests"]) and all(r["witness"] for r in report["tests"])
     return report

@@ -1,0 +1,726 @@
+{
+  "schema_version": 1,
+  "base": "c4c03b63ae56e0aef1aa00cc6b587cd27cd6bf8b",
+  "head": "93460c5afd055b19c10781210c4c5429ba895f88",
+  "test_file": "tests/test_deadlines.py",
+  "test_sha256": "0bb0b84d7feb74398fc9d1a32f9cc294ed14b66ad9c7fb48f723f490ef3531af",
+  "python": {
+    "implementation": "cpython",
+    "version": "3.14.7"
+  },
+  "source_roots": [],
+  "timeout_seconds": 30,
+  "tests": [
+    {
+      "test_id": "DeadlineTests.test_deadline_crossed_during_selection_never_enters_backend",
+      "base": {
+        "status": "assertion_failure",
+        "record": {
+          "protocol": 1,
+          "test_id": "DeadlineTests.test_deadline_crossed_during_selection_never_enters_backend",
+          "collected": 1,
+          "tests_run": 1,
+          "events": [
+            {
+              "status": "assertion_failure",
+              "phase": "test",
+              "exception": "AssertionError",
+              "message": "Lists differ: ['r0'] != []\n\nFirst list contains 1 additional elements.\nFirst extra element 0:\n'r0'\n\n- ['r0']\n+ []"
+            }
+          ],
+          "completed": true,
+          "imports": [
+            {
+              "module": "serving_lab",
+              "path": "serving_lab/__init__.py",
+              "sha256": "2cf28ef3f73260cd5b21417803ef9f32b49a7a3cca98d51eaadc9df29666456e"
+            },
+            {
+              "module": "serving_lab.backend",
+              "path": "serving_lab/backend.py",
+              "sha256": "2dd9bb5bfd1a86dd4d1133f70fd600c7e2b1f65c9d0b02d418a65f08c169583e"
+            },
+            {
+              "module": "serving_lab.cli",
+              "path": "serving_lab/cli.py",
+              "sha256": "eeb1189db513bafaa8e066b059bd425b4a61781df29579baabc33b23d73a31a0"
+            },
+            {
+              "module": "serving_lab.metrics",
+              "path": "serving_lab/metrics.py",
+              "sha256": "35d8da737fd2fe6dec6211b31688c7eda500750b767e42971ec43ea78c63dcd0"
+            },
+            {
+              "module": "serving_lab.mock_server",
+              "path": "serving_lab/mock_server.py",
+              "sha256": "3eb5777605bc4cabc4f4af0995ee350426ff64479dab40af6f43fca7ffe0fc96"
+            },
+            {
+              "module": "serving_lab.scheduler",
+              "path": "serving_lab/scheduler.py",
+              "sha256": "e07b4c34d7d0f7d6ec3cc3abafca8167a9273509c47f84bdb3c80c1a5b3db59c"
+            },
+            {
+              "module": "serving_lab.workload",
+              "path": "serving_lab/workload.py",
+              "sha256": "0d6895624d7a642beac6f726271fc0604621437cd14d87569050c7e5dc2ed385"
+            },
+            {
+              "module": "witness_test",
+              "path": "tests/test_deadlines.py"
+            }
+          ],
+          "environment": {
+            "python": {
+              "implementation": "cpython",
+              "version": "3.13.2",
+              "executable_sha256": "ae7c92fe068bf5591900a35ec172f5d5bd1aefd77829ab88e1397c3581ef4c2a"
+            },
+            "dependency_directory_count": 1,
+            "distributions": [
+              {
+                "directory": 0,
+                "name": "agent-serving-lab",
+                "version": "0.1.0",
+                "metadata_sha256": "65db67d5be1ee5eb9df52e27a6081361a07288ba4c23806ab109e9b042825e20"
+              },
+              {
+                "directory": 0,
+                "name": "anyio",
+                "version": "4.15.1",
+                "metadata_sha256": "043aecb571af7189e8a6c528f5d8e32545f1b2cdfaaf761d51e6d5b67ea3ca81"
+              },
+              {
+                "directory": 0,
+                "name": "certifi",
+                "version": "2026.7.22",
+                "metadata_sha256": "ef5af1638fbb23676ac3c5777dfcfc2cd9c348fe4172ed5ba3d277655b248090"
+              },
+              {
+                "directory": 0,
+                "name": "h11",
+                "version": "0.16.0",
+                "metadata_sha256": "28f326098ac09fcba79b8f180f96087c841fe2456215cb7b872a9c7d5cd19d64"
+              },
+              {
+                "directory": 0,
+                "name": "httpcore",
+                "version": "1.0.9",
+                "metadata_sha256": "fe2d4fda6199128978779e0cf27f3c045c531863fcdd987eacc74f3a18d41c21"
+              },
+              {
+                "directory": 0,
+                "name": "httpx",
+                "version": "0.28.1",
+                "metadata_sha256": "febb9b0f8f3e80d57c8199c304f35c4336e8581d1d18d7983c92766b82793b25"
+              },
+              {
+                "directory": 0,
+                "name": "idna",
+                "version": "3.20",
+                "metadata_sha256": "dbd8c14c1e4ca1e0c9824a6dbc7cbbf78884f38eb52d91148cd3025f671e4b85"
+              },
+              {
+                "directory": 0,
+                "name": "typing_extensions",
+                "version": "4.16.0",
+                "metadata_sha256": "b05084ca1d50879865178d9fff9fabeab61bdfb1f361bfbde95421ffc8f9be46"
+              }
+            ]
+          }
+        }
+      },
+      "head": {
+        "status": "pass",
+        "record": {
+          "protocol": 1,
+          "test_id": "DeadlineTests.test_deadline_crossed_during_selection_never_enters_backend",
+          "collected": 1,
+          "tests_run": 1,
+          "events": [
+            {
+              "status": "pass",
+              "phase": "teardown"
+            }
+          ],
+          "completed": true,
+          "imports": [
+            {
+              "module": "serving_lab",
+              "path": "serving_lab/__init__.py",
+              "sha256": "2cf28ef3f73260cd5b21417803ef9f32b49a7a3cca98d51eaadc9df29666456e"
+            },
+            {
+              "module": "serving_lab.backend",
+              "path": "serving_lab/backend.py",
+              "sha256": "2dd9bb5bfd1a86dd4d1133f70fd600c7e2b1f65c9d0b02d418a65f08c169583e"
+            },
+            {
+              "module": "serving_lab.cli",
+              "path": "serving_lab/cli.py",
+              "sha256": "eeb1189db513bafaa8e066b059bd425b4a61781df29579baabc33b23d73a31a0"
+            },
+            {
+              "module": "serving_lab.metrics",
+              "path": "serving_lab/metrics.py",
+              "sha256": "35d8da737fd2fe6dec6211b31688c7eda500750b767e42971ec43ea78c63dcd0"
+            },
+            {
+              "module": "serving_lab.mock_server",
+              "path": "serving_lab/mock_server.py",
+              "sha256": "3eb5777605bc4cabc4f4af0995ee350426ff64479dab40af6f43fca7ffe0fc96"
+            },
+            {
+              "module": "serving_lab.scheduler",
+              "path": "serving_lab/scheduler.py",
+              "sha256": "4f3ff698ccd692f6f5b6221f81532cba17f92d7fca11425513d6a16d88182d12"
+            },
+            {
+              "module": "serving_lab.workload",
+              "path": "serving_lab/workload.py",
+              "sha256": "0d6895624d7a642beac6f726271fc0604621437cd14d87569050c7e5dc2ed385"
+            },
+            {
+              "module": "witness_test",
+              "path": "tests/test_deadlines.py"
+            }
+          ],
+          "environment": {
+            "python": {
+              "implementation": "cpython",
+              "version": "3.13.2",
+              "executable_sha256": "ae7c92fe068bf5591900a35ec172f5d5bd1aefd77829ab88e1397c3581ef4c2a"
+            },
+            "dependency_directory_count": 1,
+            "distributions": [
+              {
+                "directory": 0,
+                "name": "agent-serving-lab",
+                "version": "0.1.0",
+                "metadata_sha256": "65db67d5be1ee5eb9df52e27a6081361a07288ba4c23806ab109e9b042825e20"
+              },
+              {
+                "directory": 0,
+                "name": "anyio",
+                "version": "4.15.1",
+                "metadata_sha256": "043aecb571af7189e8a6c528f5d8e32545f1b2cdfaaf761d51e6d5b67ea3ca81"
+              },
+              {
+                "directory": 0,
+                "name": "certifi",
+                "version": "2026.7.22",
+                "metadata_sha256": "ef5af1638fbb23676ac3c5777dfcfc2cd9c348fe4172ed5ba3d277655b248090"
+              },
+              {
+                "directory": 0,
+                "name": "h11",
+                "version": "0.16.0",
+                "metadata_sha256": "28f326098ac09fcba79b8f180f96087c841fe2456215cb7b872a9c7d5cd19d64"
+              },
+              {
+                "directory": 0,
+                "name": "httpcore",
+                "version": "1.0.9",
+                "metadata_sha256": "fe2d4fda6199128978779e0cf27f3c045c531863fcdd987eacc74f3a18d41c21"
+              },
+              {
+                "directory": 0,
+                "name": "httpx",
+                "version": "0.28.1",
+                "metadata_sha256": "febb9b0f8f3e80d57c8199c304f35c4336e8581d1d18d7983c92766b82793b25"
+              },
+              {
+                "directory": 0,
+                "name": "idna",
+                "version": "3.20",
+                "metadata_sha256": "dbd8c14c1e4ca1e0c9824a6dbc7cbbf78884f38eb52d91148cd3025f671e4b85"
+              },
+              {
+                "directory": 0,
+                "name": "typing_extensions",
+                "version": "4.16.0",
+                "metadata_sha256": "b05084ca1d50879865178d9fff9fabeab61bdfb1f361bfbde95421ffc8f9be46"
+              }
+            ]
+          }
+        }
+      },
+      "witness": true
+    },
+    {
+      "test_id": "DeadlineTests.test_reverse_descendants_block_before_waiting_for_unrelated_stream",
+      "base": {
+        "status": "assertion_failure",
+        "record": {
+          "protocol": 1,
+          "test_id": "DeadlineTests.test_reverse_descendants_block_before_waiting_for_unrelated_stream",
+          "collected": 1,
+          "tests_run": 1,
+          "events": [
+            {
+              "status": "assertion_failure",
+              "phase": "test",
+              "exception": "AssertionError",
+              "message": "0.029999999795109034 != 0.009999999776482582"
+            }
+          ],
+          "completed": true,
+          "imports": [
+            {
+              "module": "serving_lab",
+              "path": "serving_lab/__init__.py",
+              "sha256": "2cf28ef3f73260cd5b21417803ef9f32b49a7a3cca98d51eaadc9df29666456e"
+            },
+            {
+              "module": "serving_lab.backend",
+              "path": "serving_lab/backend.py",
+              "sha256": "2dd9bb5bfd1a86dd4d1133f70fd600c7e2b1f65c9d0b02d418a65f08c169583e"
+            },
+            {
+              "module": "serving_lab.cli",
+              "path": "serving_lab/cli.py",
+              "sha256": "eeb1189db513bafaa8e066b059bd425b4a61781df29579baabc33b23d73a31a0"
+            },
+            {
+              "module": "serving_lab.metrics",
+              "path": "serving_lab/metrics.py",
+              "sha256": "35d8da737fd2fe6dec6211b31688c7eda500750b767e42971ec43ea78c63dcd0"
+            },
+            {
+              "module": "serving_lab.mock_server",
+              "path": "serving_lab/mock_server.py",
+              "sha256": "3eb5777605bc4cabc4f4af0995ee350426ff64479dab40af6f43fca7ffe0fc96"
+            },
+            {
+              "module": "serving_lab.scheduler",
+              "path": "serving_lab/scheduler.py",
+              "sha256": "e07b4c34d7d0f7d6ec3cc3abafca8167a9273509c47f84bdb3c80c1a5b3db59c"
+            },
+            {
+              "module": "serving_lab.workload",
+              "path": "serving_lab/workload.py",
+              "sha256": "0d6895624d7a642beac6f726271fc0604621437cd14d87569050c7e5dc2ed385"
+            },
+            {
+              "module": "witness_test",
+              "path": "tests/test_deadlines.py"
+            }
+          ],
+          "environment": {
+            "python": {
+              "implementation": "cpython",
+              "version": "3.13.2",
+              "executable_sha256": "ae7c92fe068bf5591900a35ec172f5d5bd1aefd77829ab88e1397c3581ef4c2a"
+            },
+            "dependency_directory_count": 1,
+            "distributions": [
+              {
+                "directory": 0,
+                "name": "agent-serving-lab",
+                "version": "0.1.0",
+                "metadata_sha256": "65db67d5be1ee5eb9df52e27a6081361a07288ba4c23806ab109e9b042825e20"
+              },
+              {
+                "directory": 0,
+                "name": "anyio",
+                "version": "4.15.1",
+                "metadata_sha256": "043aecb571af7189e8a6c528f5d8e32545f1b2cdfaaf761d51e6d5b67ea3ca81"
+              },
+              {
+                "directory": 0,
+                "name": "certifi",
+                "version": "2026.7.22",
+                "metadata_sha256": "ef5af1638fbb23676ac3c5777dfcfc2cd9c348fe4172ed5ba3d277655b248090"
+              },
+              {
+                "directory": 0,
+                "name": "h11",
+                "version": "0.16.0",
+                "metadata_sha256": "28f326098ac09fcba79b8f180f96087c841fe2456215cb7b872a9c7d5cd19d64"
+              },
+              {
+                "directory": 0,
+                "name": "httpcore",
+                "version": "1.0.9",
+                "metadata_sha256": "fe2d4fda6199128978779e0cf27f3c045c531863fcdd987eacc74f3a18d41c21"
+              },
+              {
+                "directory": 0,
+                "name": "httpx",
+                "version": "0.28.1",
+                "metadata_sha256": "febb9b0f8f3e80d57c8199c304f35c4336e8581d1d18d7983c92766b82793b25"
+              },
+              {
+                "directory": 0,
+                "name": "idna",
+                "version": "3.20",
+                "metadata_sha256": "dbd8c14c1e4ca1e0c9824a6dbc7cbbf78884f38eb52d91148cd3025f671e4b85"
+              },
+              {
+                "directory": 0,
+                "name": "typing_extensions",
+                "version": "4.16.0",
+                "metadata_sha256": "b05084ca1d50879865178d9fff9fabeab61bdfb1f361bfbde95421ffc8f9be46"
+              }
+            ]
+          }
+        }
+      },
+      "head": {
+        "status": "pass",
+        "record": {
+          "protocol": 1,
+          "test_id": "DeadlineTests.test_reverse_descendants_block_before_waiting_for_unrelated_stream",
+          "collected": 1,
+          "tests_run": 1,
+          "events": [
+            {
+              "status": "pass",
+              "phase": "teardown"
+            }
+          ],
+          "completed": true,
+          "imports": [
+            {
+              "module": "serving_lab",
+              "path": "serving_lab/__init__.py",
+              "sha256": "2cf28ef3f73260cd5b21417803ef9f32b49a7a3cca98d51eaadc9df29666456e"
+            },
+            {
+              "module": "serving_lab.backend",
+              "path": "serving_lab/backend.py",
+              "sha256": "2dd9bb5bfd1a86dd4d1133f70fd600c7e2b1f65c9d0b02d418a65f08c169583e"
+            },
+            {
+              "module": "serving_lab.cli",
+              "path": "serving_lab/cli.py",
+              "sha256": "eeb1189db513bafaa8e066b059bd425b4a61781df29579baabc33b23d73a31a0"
+            },
+            {
+              "module": "serving_lab.metrics",
+              "path": "serving_lab/metrics.py",
+              "sha256": "35d8da737fd2fe6dec6211b31688c7eda500750b767e42971ec43ea78c63dcd0"
+            },
+            {
+              "module": "serving_lab.mock_server",
+              "path": "serving_lab/mock_server.py",
+              "sha256": "3eb5777605bc4cabc4f4af0995ee350426ff64479dab40af6f43fca7ffe0fc96"
+            },
+            {
+              "module": "serving_lab.scheduler",
+              "path": "serving_lab/scheduler.py",
+              "sha256": "4f3ff698ccd692f6f5b6221f81532cba17f92d7fca11425513d6a16d88182d12"
+            },
+            {
+              "module": "serving_lab.workload",
+              "path": "serving_lab/workload.py",
+              "sha256": "0d6895624d7a642beac6f726271fc0604621437cd14d87569050c7e5dc2ed385"
+            },
+            {
+              "module": "witness_test",
+              "path": "tests/test_deadlines.py"
+            }
+          ],
+          "environment": {
+            "python": {
+              "implementation": "cpython",
+              "version": "3.13.2",
+              "executable_sha256": "ae7c92fe068bf5591900a35ec172f5d5bd1aefd77829ab88e1397c3581ef4c2a"
+            },
+            "dependency_directory_count": 1,
+            "distributions": [
+              {
+                "directory": 0,
+                "name": "agent-serving-lab",
+                "version": "0.1.0",
+                "metadata_sha256": "65db67d5be1ee5eb9df52e27a6081361a07288ba4c23806ab109e9b042825e20"
+              },
+              {
+                "directory": 0,
+                "name": "anyio",
+                "version": "4.15.1",
+                "metadata_sha256": "043aecb571af7189e8a6c528f5d8e32545f1b2cdfaaf761d51e6d5b67ea3ca81"
+              },
+              {
+                "directory": 0,
+                "name": "certifi",
+                "version": "2026.7.22",
+                "metadata_sha256": "ef5af1638fbb23676ac3c5777dfcfc2cd9c348fe4172ed5ba3d277655b248090"
+              },
+              {
+                "directory": 0,
+                "name": "h11",
+                "version": "0.16.0",
+                "metadata_sha256": "28f326098ac09fcba79b8f180f96087c841fe2456215cb7b872a9c7d5cd19d64"
+              },
+              {
+                "directory": 0,
+                "name": "httpcore",
+                "version": "1.0.9",
+                "metadata_sha256": "fe2d4fda6199128978779e0cf27f3c045c531863fcdd987eacc74f3a18d41c21"
+              },
+              {
+                "directory": 0,
+                "name": "httpx",
+                "version": "0.28.1",
+                "metadata_sha256": "febb9b0f8f3e80d57c8199c304f35c4336e8581d1d18d7983c92766b82793b25"
+              },
+              {
+                "directory": 0,
+                "name": "idna",
+                "version": "3.20",
+                "metadata_sha256": "dbd8c14c1e4ca1e0c9824a6dbc7cbbf78884f38eb52d91148cd3025f671e4b85"
+              },
+              {
+                "directory": 0,
+                "name": "typing_extensions",
+                "version": "4.16.0",
+                "metadata_sha256": "b05084ca1d50879865178d9fff9fabeab61bdfb1f361bfbde95421ffc8f9be46"
+              }
+            ]
+          }
+        }
+      },
+      "witness": true
+    },
+    {
+      "test_id": "DeadlineTests.test_caller_cancellation_cleans_active_requests",
+      "base": {
+        "status": "pass",
+        "record": {
+          "protocol": 1,
+          "test_id": "DeadlineTests.test_caller_cancellation_cleans_active_requests",
+          "collected": 1,
+          "tests_run": 1,
+          "events": [
+            {
+              "status": "pass",
+              "phase": "teardown"
+            }
+          ],
+          "completed": true,
+          "imports": [
+            {
+              "module": "serving_lab",
+              "path": "serving_lab/__init__.py",
+              "sha256": "2cf28ef3f73260cd5b21417803ef9f32b49a7a3cca98d51eaadc9df29666456e"
+            },
+            {
+              "module": "serving_lab.backend",
+              "path": "serving_lab/backend.py",
+              "sha256": "2dd9bb5bfd1a86dd4d1133f70fd600c7e2b1f65c9d0b02d418a65f08c169583e"
+            },
+            {
+              "module": "serving_lab.cli",
+              "path": "serving_lab/cli.py",
+              "sha256": "eeb1189db513bafaa8e066b059bd425b4a61781df29579baabc33b23d73a31a0"
+            },
+            {
+              "module": "serving_lab.metrics",
+              "path": "serving_lab/metrics.py",
+              "sha256": "35d8da737fd2fe6dec6211b31688c7eda500750b767e42971ec43ea78c63dcd0"
+            },
+            {
+              "module": "serving_lab.mock_server",
+              "path": "serving_lab/mock_server.py",
+              "sha256": "3eb5777605bc4cabc4f4af0995ee350426ff64479dab40af6f43fca7ffe0fc96"
+            },
+            {
+              "module": "serving_lab.scheduler",
+              "path": "serving_lab/scheduler.py",
+              "sha256": "e07b4c34d7d0f7d6ec3cc3abafca8167a9273509c47f84bdb3c80c1a5b3db59c"
+            },
+            {
+              "module": "serving_lab.workload",
+              "path": "serving_lab/workload.py",
+              "sha256": "0d6895624d7a642beac6f726271fc0604621437cd14d87569050c7e5dc2ed385"
+            },
+            {
+              "module": "witness_test",
+              "path": "tests/test_deadlines.py"
+            }
+          ],
+          "environment": {
+            "python": {
+              "implementation": "cpython",
+              "version": "3.13.2",
+              "executable_sha256": "ae7c92fe068bf5591900a35ec172f5d5bd1aefd77829ab88e1397c3581ef4c2a"
+            },
+            "dependency_directory_count": 1,
+            "distributions": [
+              {
+                "directory": 0,
+                "name": "agent-serving-lab",
+                "version": "0.1.0",
+                "metadata_sha256": "65db67d5be1ee5eb9df52e27a6081361a07288ba4c23806ab109e9b042825e20"
+              },
+              {
+                "directory": 0,
+                "name": "anyio",
+                "version": "4.15.1",
+                "metadata_sha256": "043aecb571af7189e8a6c528f5d8e32545f1b2cdfaaf761d51e6d5b67ea3ca81"
+              },
+              {
+                "directory": 0,
+                "name": "certifi",
+                "version": "2026.7.22",
+                "metadata_sha256": "ef5af1638fbb23676ac3c5777dfcfc2cd9c348fe4172ed5ba3d277655b248090"
+              },
+              {
+                "directory": 0,
+                "name": "h11",
+                "version": "0.16.0",
+                "metadata_sha256": "28f326098ac09fcba79b8f180f96087c841fe2456215cb7b872a9c7d5cd19d64"
+              },
+              {
+                "directory": 0,
+                "name": "httpcore",
+                "version": "1.0.9",
+                "metadata_sha256": "fe2d4fda6199128978779e0cf27f3c045c531863fcdd987eacc74f3a18d41c21"
+              },
+              {
+                "directory": 0,
+                "name": "httpx",
+                "version": "0.28.1",
+                "metadata_sha256": "febb9b0f8f3e80d57c8199c304f35c4336e8581d1d18d7983c92766b82793b25"
+              },
+              {
+                "directory": 0,
+                "name": "idna",
+                "version": "3.20",
+                "metadata_sha256": "dbd8c14c1e4ca1e0c9824a6dbc7cbbf78884f38eb52d91148cd3025f671e4b85"
+              },
+              {
+                "directory": 0,
+                "name": "typing_extensions",
+                "version": "4.16.0",
+                "metadata_sha256": "b05084ca1d50879865178d9fff9fabeab61bdfb1f361bfbde95421ffc8f9be46"
+              }
+            ]
+          }
+        }
+      },
+      "head": {
+        "status": "pass",
+        "record": {
+          "protocol": 1,
+          "test_id": "DeadlineTests.test_caller_cancellation_cleans_active_requests",
+          "collected": 1,
+          "tests_run": 1,
+          "events": [
+            {
+              "status": "pass",
+              "phase": "teardown"
+            }
+          ],
+          "completed": true,
+          "imports": [
+            {
+              "module": "serving_lab",
+              "path": "serving_lab/__init__.py",
+              "sha256": "2cf28ef3f73260cd5b21417803ef9f32b49a7a3cca98d51eaadc9df29666456e"
+            },
+            {
+              "module": "serving_lab.backend",
+              "path": "serving_lab/backend.py",
+              "sha256": "2dd9bb5bfd1a86dd4d1133f70fd600c7e2b1f65c9d0b02d418a65f08c169583e"
+            },
+            {
+              "module": "serving_lab.cli",
+              "path": "serving_lab/cli.py",
+              "sha256": "eeb1189db513bafaa8e066b059bd425b4a61781df29579baabc33b23d73a31a0"
+            },
+            {
+              "module": "serving_lab.metrics",
+              "path": "serving_lab/metrics.py",
+              "sha256": "35d8da737fd2fe6dec6211b31688c7eda500750b767e42971ec43ea78c63dcd0"
+            },
+            {
+              "module": "serving_lab.mock_server",
+              "path": "serving_lab/mock_server.py",
+              "sha256": "3eb5777605bc4cabc4f4af0995ee350426ff64479dab40af6f43fca7ffe0fc96"
+            },
+            {
+              "module": "serving_lab.scheduler",
+              "path": "serving_lab/scheduler.py",
+              "sha256": "4f3ff698ccd692f6f5b6221f81532cba17f92d7fca11425513d6a16d88182d12"
+            },
+            {
+              "module": "serving_lab.workload",
+              "path": "serving_lab/workload.py",
+              "sha256": "0d6895624d7a642beac6f726271fc0604621437cd14d87569050c7e5dc2ed385"
+            },
+            {
+              "module": "witness_test",
+              "path": "tests/test_deadlines.py"
+            }
+          ],
+          "environment": {
+            "python": {
+              "implementation": "cpython",
+              "version": "3.13.2",
+              "executable_sha256": "ae7c92fe068bf5591900a35ec172f5d5bd1aefd77829ab88e1397c3581ef4c2a"
+            },
+            "dependency_directory_count": 1,
+            "distributions": [
+              {
+                "directory": 0,
+                "name": "agent-serving-lab",
+                "version": "0.1.0",
+                "metadata_sha256": "65db67d5be1ee5eb9df52e27a6081361a07288ba4c23806ab109e9b042825e20"
+              },
+              {
+                "directory": 0,
+                "name": "anyio",
+                "version": "4.15.1",
+                "metadata_sha256": "043aecb571af7189e8a6c528f5d8e32545f1b2cdfaaf761d51e6d5b67ea3ca81"
+              },
+              {
+                "directory": 0,
+                "name": "certifi",
+                "version": "2026.7.22",
+                "metadata_sha256": "ef5af1638fbb23676ac3c5777dfcfc2cd9c348fe4172ed5ba3d277655b248090"
+              },
+              {
+                "directory": 0,
+                "name": "h11",
+                "version": "0.16.0",
+                "metadata_sha256": "28f326098ac09fcba79b8f180f96087c841fe2456215cb7b872a9c7d5cd19d64"
+              },
+              {
+                "directory": 0,
+                "name": "httpcore",
+                "version": "1.0.9",
+                "metadata_sha256": "fe2d4fda6199128978779e0cf27f3c045c531863fcdd987eacc74f3a18d41c21"
+              },
+              {
+                "directory": 0,
+                "name": "httpx",
+                "version": "0.28.1",
+                "metadata_sha256": "febb9b0f8f3e80d57c8199c304f35c4336e8581d1d18d7983c92766b82793b25"
+              },
+              {
+                "directory": 0,
+                "name": "idna",
+                "version": "3.20",
+                "metadata_sha256": "dbd8c14c1e4ca1e0c9824a6dbc7cbbf78884f38eb52d91148cd3025f671e4b85"
+              },
+              {
+                "directory": 0,
+                "name": "typing_extensions",
+                "version": "4.16.0",
+                "metadata_sha256": "b05084ca1d50879865178d9fff9fabeab61bdfb1f361bfbde95421ffc8f9be46"
+              }
+            ]
+          }
+        }
+      },
+      "witness": false
+    }
+  ],
+  "environment_mode": "explicit-directories",
+  "packages": [
+    "serving_lab"
+  ],
+  "all_witnesses": false
+}

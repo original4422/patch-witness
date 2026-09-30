@@ -1,0 +1,29 @@
+{
+  "unchanged": true,
+  "before": {
+    "repository": {
+      "head": "cc109cf05e6b9d572aa97f511c1270b528061469",
+      "index_sha256": "3fdaa7c00b63bde69ac858247007cda0739712dcea47c20b05698d4119b94152",
+      "tracked_and_unignored_files": 37,
+      "worktree_sha256": "8711f42cb86893d0949e827a8a32fda2ca4221b8241736e1c1ad582a8344ed26"
+    },
+    "environment": {
+      "files": 316,
+      "tree_sha256": "f73579923ad7cf38b7a713997d9d65bbc25e2631302c9faf015a296b935abc01",
+      "python_executable_sha256": "ae7c92fe068bf5591900a35ec172f5d5bd1aefd77829ab88e1397c3581ef4c2a"
+    }
+  },
+  "after": {
+    "repository": {
+      "head": "cc109cf05e6b9d572aa97f511c1270b528061469",
+      "index_sha256": "3fdaa7c00b63bde69ac858247007cda0739712dcea47c20b05698d4119b94152",
+      "tracked_and_unignored_files": 37,
+      "worktree_sha256": "8711f42cb86893d0949e827a8a32fda2ca4221b8241736e1c1ad582a8344ed26"
+    },
+    "environment": {
+      "files": 316,
+      "tree_sha256": "f73579923ad7cf38b7a713997d9d65bbc25e2631302c9faf015a296b935abc01",
+      "python_executable_sha256": "ae7c92fe068bf5591900a35ec172f5d5bd1aefd77829ab88e1397c3581ef4c2a"
+    }
+  }
+}

@@ -24,6 +24,30 @@ python3 -m patch_witness \
 
 报告包含完整 commit SHA、head 测试文件 SHA-256、Python 版本、收集/执行数量、两侧事件和状态、快照内导入路径。退出码：`0` 所选测试全部构成 witness；`1` 至少一条不构成；`2` 参数或快照准备失败。
 
+## 使用已有依赖环境
+
+带第三方依赖的项目可同时传入三个参数：
+
+```sh
+python3 -m patch_witness \
+  --repo ../agent-serving-lab \
+  --base c4c03b63ae56e0aef1aa00cc6b587cd27cd6bf8b \
+  --head 93460c5afd055b19c10781210c4c5429ba895f88 \
+  --test-file tests/test_deadlines.py \
+  --test-id DeadlineTests.test_deadline_crossed_during_selection_never_enters_backend \
+  --python ../agent-serving-lab/.venv/bin/python \
+  --dependency-dir ../agent-serving-lab/.venv/lib/python3.13/site-packages \
+  --package serving_lab
+```
+
+解释器和依赖目录使用现成环境的实际路径。`--dependency-dir` 与 `--package` 可重复；包范围是带 `__init__.py` 的顶层常规 Python 包，`src/` 布局再加 `--source-root src`。base/head 使用同一解释器和目录。
+
+worker 保持 **`-I -S -B`**，直接追加依赖目录，不处理 `.pth`、`sitecustomize` 或 editable hook。声明包及其子模块只从各自 Git 快照解析；缺失或来源越界记为 `source_error`，不会从环境中同名安装包补齐。
+
+逐侧记录 worker Python 版本/实现/解释器 hash、依赖 distribution 名称/版本/metadata hash、已导入被测模块的快照路径及 hash；顶层 `python` 仍表示 launcher。两侧观测身份不一致时 `comparison_status: environment_mismatch`，身份缺失时为 `environment_unavailable`，均不判 witness。这是元数据观测，不是锁文件校验或完整环境重建。工具不安装、构建或修改环境。
+
+[serving 真实案例](examples/serving-deadlines.md) 使用带 editable 安装的现成环境读取 httpx，两个指定测试 F2P、一个取消测试 P2P。
+
 ## 判定
 
 仅 **测试正文中的 AssertionError → 通过** 算作 witness。每条测试、每个版本均使用新快照；通过要求恰好收集并执行一条测试、结果完整、进程正常退出。
@@ -37,7 +61,7 @@ python3 -m patch_witness \
 
 ## 执行范围
 
-通过 Git `ls-tree` / `cat-file` 读取提交到临时目录，不 checkout/reset/fetch，也不写目标仓库。两侧只覆盖指定的 head 测试文件，其余 helper/fixture 保留各自版本。首版支持常规文件，拒绝符号链接和 submodule；依赖仅限标准库与仓库源码。
+通过 Git `ls-tree` / `cat-file` 读取提交到临时目录，不 checkout/reset/fetch，也不写目标仓库。两侧只覆盖指定的 head 测试文件，其余 helper/fixture 保留各自版本。首版支持常规文件，拒绝符号链接和 submodule；默认模式依赖标准库与仓库源码，显式模式读取已有依赖目录。
 
 测试和源码是受信任代码。临时快照、独立判定进程不构成恶意 Python 的安全沙箱或防篡改边界。witness 记录具体测试的行为变化，审查时仍需确认断言对应预期修复。
 
@@ -56,4 +80,4 @@ python3 -m patch_witness \
 python3 -m unittest discover -s tests -v
 ```
 
-29 项测试覆盖真实 Git 快照、脏工作区、导入来源、关键反例及超时子进程清理。[相关工具及定位](README.md#related-tools)。MIT。
+39 项测试覆盖真实 Git 快照、脏工作区、导入来源、关键反例及超时子进程清理。[相关工具及定位](README.md#related-tools)。MIT。

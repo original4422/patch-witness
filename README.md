@@ -29,6 +29,30 @@ The target repository and both commits must already exist locally. Repeat `--tes
 
 JSON includes full commit SHAs, the head test file's SHA-256, interpreter version, explicit source roots, collected/run counts, events, snapshot-relative imports, and each side's status. Exit codes: **0** all requested tests are witnesses; **1** at least one is not; **2** invocation/snapshot preparation failed.
 
+## Use an existing dependency environment
+
+For a project with third-party dependencies, supply all three options together:
+
+```sh
+python3 -m patch_witness \
+  --repo ../agent-serving-lab \
+  --base c4c03b63ae56e0aef1aa00cc6b587cd27cd6bf8b \
+  --head 93460c5afd055b19c10781210c4c5429ba895f88 \
+  --test-file tests/test_deadlines.py \
+  --test-id DeadlineTests.test_deadline_crossed_during_selection_never_enters_backend \
+  --python ../agent-serving-lab/.venv/bin/python \
+  --dependency-dir ../agent-serving-lab/.venv/lib/python3.13/site-packages \
+  --package serving_lab
+```
+
+Use the actual interpreter and dependency directory of your existing environment. `--dependency-dir` and `--package` can repeat. Packages are top-level regular Python packages with `__init__.py`; use `--source-root src` when needed. Both revisions use the same interpreter and directories.
+
+Workers still start with **`-I -S -B`**. Dependency directories are appended directly; `.pth`, `sitecustomize`, and editable-install hooks are not processed. Each declared package and its submodules resolve only from that revision's snapshot. A missing package/module or a loaded package whose origin/search path leaves the snapshot produces `source_error`, including when an installed copy exists.
+
+Each worker records its Python implementation/version and executable hash, dependency distribution names/versions/metadata hashes, and hashes of imported scoped source files. The top-level `python` field remains the launcher identity. A difference in the observed worker identities sets `comparison_status: environment_mismatch` and `witness: false`; missing identity is `environment_unavailable`. These are observed metadata, not a dependency lock or complete environment reconstruction. No installer, environment modification, or package build runs.
+
+[The serving case](examples/serving-deadlines.md) records two fixed F2P tests and one P2P control using httpx from an existing environment containing an editable installation.
+
 ## What counts
 
 Only **test-body assertion failure → pass** produces `witness: true`. Each test runs alone, in fresh source snapshots on both sides. A passing result requires exactly one collected and executed test, a completed result record, and a successful worker exit.
@@ -41,6 +65,7 @@ Only **test-body assertion failure → pass** produces `witness: true`. Each tes
 | `import_error`, `collection_error` | Test module/dependency import or test selection failed |
 | `zero_tests`, `multiple_tests` | The ID selected something other than exactly one test |
 | `setup_error`, `teardown_error`, `cleanup_error`, `test_error` | Failure outside the body assertion path; overrides an earlier assertion |
+| `source_error`, `environment_error` | Explicit package provenance or selected worker environment failed |
 | `timeout`, `worker_exit` | Deadline reached or worker exited abnormally |
 | `missing_result`, `invalid_result` | No complete usable event record; exit code zero alone is insufficient |
 
@@ -50,7 +75,7 @@ The parent process checks the worker's record and computes the witness. The work
 
 The CLI reads Git objects with `ls-tree`/`cat-file` into temporary directories. It overlays **only the named head test file** on both revisions. Other fixtures and helpers remain at their respective revisions. There is no checkout, reset, fetch, or write to the target repository. Regular files are supported; symlinks and submodules are rejected. Tests use their snapshot as the working directory.
 
-Run trusted test and source code. Temporary snapshots and a separate verdict process are not a security sandbox or an anti-tampering boundary against malicious Python. This release supports stdlib-only unittest environments; it does not install dependencies or adapt pytest projects. A witness describes this test's observed transition; review the assertion to decide whether it represents the intended fix.
+Run trusted test and source code. Temporary snapshots and a separate verdict process are not a security sandbox or an anti-tampering boundary against malicious Python. The default mode uses stdlib-only unittest environments; the explicit mode reads already prepared dependency directories. Tests remain unittest-based. A witness describes this test's observed transition; review the assertion to decide whether it represents the intended fix.
 
 ## Verified examples
 
@@ -69,7 +94,7 @@ Both target repositories retained identical HEAD, index bytes, and tracked/unign
 python3 -m unittest discover -s tests -v
 ```
 
-29 tests exercise real temporary Git repositories, dirty staged/unstaged worktrees, snapshot imports, F2P/P2P, fixture errors, skips, missing dependencies, zero collection, process exits, timeout descendant cleanup, and parent result checks.
+39 tests exercise real temporary Git repositories, dirty staged/unstaged worktrees, snapshot imports, F2P/P2P, fixture errors, skips, missing dependencies, zero collection, process exits, timeout descendant cleanup, parent result checks, explicit dependencies, disabled site hooks, missing-package fallback rejection, and observed environment mismatches.
 
 ## Related tools
 

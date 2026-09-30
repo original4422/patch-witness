@@ -27,3 +27,7 @@ git clone https://github.com/original4422/learn-codex.git ../learn-codex
 ```
 
 The reports contain no source machine paths. Run recorded 2026-09-30, macOS, CPython 3.14.7. Assertion messages may include subprocess timings, so reproduction does not require byte-identical JSON.
+
+## Explicit dependency environment
+
+The [serving deadline case](serving-deadlines.md) adds two fixed F2P tests and a cancellation P2P control using an existing httpx environment. Its separate JSON and preservation report keep these original stdlib examples unchanged.
